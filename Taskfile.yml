@@ -1,0 +1,19 @@
+version: "3"
+
+silent: true
+
+dotenv: ['.env']
+
+tasks:
+
+  a:shell:
+    desc: Interactive shell with Ansible
+    interactive: true
+    cmds:
+      - docker run
+        --interactive
+        --tty
+        --rm
+        --volume $(pwd):/ansible
+        --user $(id -u):$(id -g)
+        $REGISTRY_HOST/$REGISTRY_PATH/docker/ansible:$IMAGE_TAG_ANSIBLE
